@@ -20,7 +20,6 @@ namespace JobBoard.UI.MVC.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
         public string ReturnUrl { get; set; }
-        public bool RememberMe { get; set; }
     }
 
     public class VerifyCodeViewModel
@@ -35,8 +34,6 @@ namespace JobBoard.UI.MVC.Models
 
         [Display(Name = "Remember this browser?")]
         public bool RememberBrowser { get; set; }
-
-        public bool RememberMe { get; set; }
     }
 
     public class ForgotViewModel
@@ -64,6 +61,12 @@ namespace JobBoard.UI.MVC.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string FirstName { get; set; }
+        [Required]
+        public string LastName { get; set; }
+        public string ResumeFile { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
