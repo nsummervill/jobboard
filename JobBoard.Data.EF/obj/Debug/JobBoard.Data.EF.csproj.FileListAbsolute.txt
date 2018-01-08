@@ -1,0 +1,4 @@
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\JobBoard.Data.EF.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\JobBoard.Data.EF.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\obj\Debug\JobBoard.Data.EF.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\obj\Debug\JobBoard.Data.EF.pdb
