@@ -238,6 +238,7 @@
     <Content Include="_Archive\codes.html" />
     <Content Include="_Archive\contact.html" />
     <Content Include="_Archive\css\bootstrap.css" />
+    <Content Include="_Archive\css\CustomCSS.css" />
     <Content Include="_Archive\css\font-awesome.css" />
     <Content Include="_Archive\css\style.css" />
     <Content Include="_Archive\events.html" />
