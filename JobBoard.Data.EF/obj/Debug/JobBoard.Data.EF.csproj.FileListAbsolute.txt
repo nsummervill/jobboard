@@ -2,3 +2,9 @@ C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Dat
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\JobBoard.Data.EF.pdb
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\obj\Debug\JobBoard.Data.EF.dll
 C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\obj\Debug\JobBoard.Data.EF.pdb
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\JobBoard.Data.EF.dll.config
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\EntityFramework.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\EntityFramework.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Student\Documents\Visual Studio 2015\Projects\JobBoard\src\JobBoard.Data.EF\obj\Debug\JobBoard.Data.EF.csprojResolveAssemblyReference.cache
