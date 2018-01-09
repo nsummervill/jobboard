@@ -56,58 +56,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <nav class="link-effect-2" id="link-effect-2">
                             <ul class="nav navbar-nav">
                                 <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                                <li> @Html.ActionLink("Jobs", "Index", "Positions")</li>
-                                <li class="dropdown">
-                                    <a href="services.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Codes <b class="caret"></b></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="services.html">Services 2</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="services.html">Services 3</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="codes.html">Codes</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="icons.html">Icons</a></li>
-                                        <li class="divider"></li>
-                                        <li><a href="services.html">One more separated link</a></li>
-                                    </ul>
-                                </li>
-                                @*<li class="dropdown">
-                                    <a href="jobs.html" class="dropdown-toggle effect-3" data-toggle="dropdown">Jobs<b class="caret"></b></a>
-                                @*<li class="dropdown dropdown-toggle effect-3" data-toggle="dropdown">@Html.ActionLink("Jobs", "Index", "Positions")<b class="caret"></b></li>*@
-                                    @*<ul class="dropdown-menu multi-column columns-2">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="jobs.html">Walk-ins</a></li>
-                                                    <li><a href="jobs.html">Bpo Jobs</a></li>
-                                                    <li><a href="jobs.html">Teaching Jobs</a></li>
-                                                    <li><a href="jobs.html">Diploma Jobs</a></li>
-                                                    <li><a href="jobs.html">Tech Support</a></li>
-                                                    <li><a href="jobs.html">Finance Jobs</a></li>
-                                                    <li><a href="jobs.html">Part time Jobs</a></li>
-                                                    <li><a href="jobs.html">Health Care</a></li>
-                                                    <li><a href="jobs.html">Hospitality</a></li>
-                                                    <li><a href="jobs.html">Internships</a></li>
-                                                    <li><a href="jobs.html">Research Jobs</a></li>
-                                                    <li><a href="jobs.html">Defence Jobs</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <ul class="multi-column-dropdown">
-                                                    <li><a href="login.html">Recruiter Updates</a></li>
-                                                    <li><a href="upload.html">Upload Resume</a></li>
-                                                    <li><a href="codes.html">Shortcodes</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </ul>
-                                </li>*@
-                              
-                                <li><a href="events.html" class="effect-3">Events</a></li>
-
-                                <li><a href="professional.html" class="effect-3">Professionals</a></li>
-                                <li><a href="contact.html" class="effect-3">Contact</a></li>
+                                <li>@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
+                                <li>@Html.ActionLink("Contact HQ", "Contact", "Home")</li>
+                                <li>@Html.ActionLink("Applications", "Index", "Applications")</li>
+                                <li>@Html.ActionLink("Locations", "Index", "Locations")</li>
+                                @Html.Partial("_LoginPartial")
                             </ul>
+                          
                         </nav>
                     </div>
                     <!--/.navbar-collapse-->
@@ -117,85 +72,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
     <!-- banner -->
-    <!--<div id="myCarousel" class="carousel slide" data-ride="carousel">
-
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="3" class=""></li>
-        </ol>
-        <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Improving workplace <span>Productivity.</span></h3>
-                        <p>Hire. Train. Retain.</p>
-                        <div class="agileits-button top_ban_agile">
-                            <a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item item2">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Inspiring leadership <span>innovation.</span></h3>
-                        <p>Hire. Train. Retain.</p>
-                        <div class="agileits-button top_ban_agile">
-                            <a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item item3">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h3>Improving workplace <span>Productivity.</span></h3>
-                        <p>Hire. Train. Retain.</p>
-                        <div class="agileits-button top_ban_agile">
-                            <a class="btn btn-primary btn-lg" href="single.html">Read More »</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="item item4">
-                <div class="container">
-                    <div class="carousel-caption">
-
-                        <h3>Inspiring leadership <span>innovation.</span></h3>
-                        <p>Hire. Train. Retain.</p>
-                        <div class="agileits-button top_ban_agile">
-                            <a class="btn btn-primary btn-lg scroll" href="#welcome" role="button">Read More »</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="fa fa-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="fa fa-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-
-    </div>-->
+    
     <!--//banner -->
     <!--/search_form -->
-    
     <!--//search_form -->
-    
     <!-- //banner-bottom -->
-    
     <!-- services -->
-    
     <!-- //services -->
     <!-- /mid-services -->
-    
     <!-- //mid-services -->
-    
     <!-- //testimonials -->
     @RenderBody()
 
