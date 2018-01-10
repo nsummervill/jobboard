@@ -21,7 +21,10 @@
             @Html.DisplayNameFor(model => model.State)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ManagerID)
+            @Html.DisplayNameFor(model => model.AspNetUser.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.LastName)
         </th>
         <th></th>
     </tr>
@@ -38,7 +41,10 @@
             @Html.DisplayFor(modelItem => item.State)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ManagerID)
+            @Html.DisplayFor(modelItem => item.AspNetUser.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.LocationID }) |

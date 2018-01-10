@@ -17,7 +17,8 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: Locations
         public ActionResult Index()
         {
-            return View(db.Locations.ToList());
+            var locations = db.Locations.Include(l => l.AspNetUser);
+            return View(locations.ToList());
         }
 
         // GET: Locations/Details/5
@@ -38,6 +39,7 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: Locations/Create
         public ActionResult Create()
         {
+            ViewBag.ManagerID = new SelectList(db.AspNetUsers, "Id", "FirstName");
             return View();
         }
 
@@ -55,6 +57,7 @@ namespace JobBoard.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.ManagerID = new SelectList(db.AspNetUsers, "Id", "FirstName", location.ManagerID);
             return View(location);
         }
 
@@ -70,6 +73,7 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.ManagerID = new SelectList(db.AspNetUsers, "Id", "FirstName", location.ManagerID);
             return View(location);
         }
 
@@ -86,6 +90,7 @@ namespace JobBoard.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.ManagerID = new SelectList(db.AspNetUsers, "Id", "FirstName", location.ManagerID);
             return View(location);
         }
 

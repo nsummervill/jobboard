@@ -14,6 +14,7 @@
             <div class="signin-form">
                 <div class="login-form-rec">
                     <form action="#" method="post">
+                        @Html.AntiForgeryToken()
                         <input type="text" name="name" placeholder="First Name" required="">
                         <input type="text" name="name" placeholder="Last Name" required="">
                         <input type="email" name="email" placeholder="Email" required="">

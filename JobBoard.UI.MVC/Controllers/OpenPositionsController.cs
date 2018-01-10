@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobBoard.Data.EF;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity.Validation;
 
 namespace JobBoard.UI.MVC.Controllers
 {
@@ -39,7 +41,7 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: OpenPositions/Create
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber");
+            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
             return View();
         }
@@ -122,6 +124,46 @@ namespace JobBoard.UI.MVC.Controllers
             db.OpenPositions.Remove(openPosition);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Apply(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OpenPosition openPosition = db.OpenPositions.Find(id);
+            if (openPosition == null)
+            {
+                return HttpNotFound();
+            }
+            var currentUserID = User.Identity.GetUserId();
+            Application a = new Application();
+            a.OpenPositionID = id.Value;
+            a.UserID = currentUserID;
+            a.ApplicationDate = DateTime.Now;
+            a.IsDeclined = false;
+            a.ResumeFile = db.AspNetUsers
+                .Where(x => x.Id == currentUserID).SingleOrDefault().ResumeFile;
+            db.Applications.Add(a);
+            //db.SaveChanges();
+            
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityValidationErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var validationError in entityValidationErrors.ValidationErrors)
+                    {
+                        Response.Write("Property: " + validationError.PropertyName + " Error: " + validationError.ErrorMessage);
+                    }
+                }
+            }
+            return RedirectToAction("Index", "Applications");
         }
 
         protected override void Dispose(bool disposing)

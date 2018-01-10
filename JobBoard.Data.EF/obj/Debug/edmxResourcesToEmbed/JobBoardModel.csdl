@@ -12,6 +12,7 @@
     <Property Name="IsDeclined" Type="Boolean" Nullable="false" />
     <Property Name="ResumeFile" Type="String" MaxLength="75" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OpenPosition" Relationship="Self.FK_Applications_OpenPositions" FromRole="Applications" ToRole="OpenPositions" />
+    <NavigationProperty Name="AspNetUser" Relationship="JobBoardModel.FK_Applications_AspNetUsers" FromRole="Application" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -23,6 +24,7 @@
     <Property Name="State" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="ManagerID" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OpenPositions" Relationship="Self.FK_OpenPositions_Locations" FromRole="Locations" ToRole="OpenPositions" />
+    <NavigationProperty Name="AspNetUser" Relationship="JobBoardModel.FK_Locations_AspNetUsers" FromRole="Location" ToRole="AspNetUser" />
   </EntityType>
   <EntityType Name="OpenPosition">
     <Key>
@@ -97,5 +99,78 @@
       <End Role="Positions" EntitySet="Positions" />
       <End Role="OpenPositions" EntitySet="OpenPositions" />
     </AssociationSet>
+    <EntitySet Name="AspNetRoles" EntityType="JobBoardModel.AspNetRole" />
+    <EntitySet Name="AspNetUsers" EntityType="JobBoardModel.AspNetUser" />
+    <AssociationSet Name="FK_Applications_AspNetUsers" Association="JobBoardModel.FK_Applications_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Application" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Locations_AspNetUsers" Association="JobBoardModel.FK_Locations_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="JobBoardModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="JobBoardModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ResumeFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Applications" Relationship="JobBoardModel.FK_Applications_AspNetUsers" FromRole="AspNetUser" ToRole="Application" />
+    <NavigationProperty Name="Locations" Relationship="JobBoardModel.FK_Locations_AspNetUsers" FromRole="AspNetUser" ToRole="Location" />
+    <NavigationProperty Name="AspNetRoles" Relationship="JobBoardModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <Association Name="FK_Applications_AspNetUsers">
+    <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="JobBoardModel.Application" Role="Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Application">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Locations_AspNetUsers">
+    <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="JobBoardModel.Location" Role="Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="ManagerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="JobBoardModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
 </Schema>

@@ -23,5 +23,6 @@ namespace JobBoard.Data.EF
         public string ResumeFile { get; set; }
     
         public virtual OpenPosition OpenPosition { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
