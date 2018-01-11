@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace JobBoard.UI.MVC.Controllers
 {
     [Authorize]
@@ -145,11 +146,37 @@ namespace JobBoard.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase resumeFile)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { FirstName = model.FirstName, LastName = model.LastName, ResumeFile = model.ResumeFile, UserName = model.Email, Email = model.Email };
+                #region File Upload Code
+
+                //Get the file name and hold it in a string variable
+                string resumeName = resumeFile.FileName;
+                //Extract the extension from the file name and hold in a variable
+                string ext = resumeName.Substring(resumeName.LastIndexOf("."));
+                //Create a valid list of extnesions and check to make sure the extension provided is in the list.
+                string[] goodExts = { ".pdf", ".doc", ".docx" };
+
+                if (goodExts.Contains(ext.ToLower()))
+                {
+                    //If the extension is valid, then create a new randomly-generated file name
+                    resumeName = Guid.NewGuid() + ext;
+                    //Save the file to the web server
+                    resumeFile.SaveAs(Server.MapPath("~/Content/Resumes/" + resumeName));
+
+                }
+                else
+                {
+                    throw new ApplicationException("Incorrect file extension. Please upload file of type .pdf, .doc, .docx");
+                }
+                //see where new account custom properties are being assigned - resume file is handled there
+                model.ResumeFile = resumeName;
+                #endregion
+                
+
+                var user = new ApplicationUser { FirstName = model.FirstName, LastName = model.LastName, ResumeFile = resumeName, UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -157,6 +184,7 @@ namespace JobBoard.UI.MVC.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
                     ViewBag.Link = callbackUrl;
+                    
                     return View("DisplayEmail");
                 }
                 AddErrors(result);

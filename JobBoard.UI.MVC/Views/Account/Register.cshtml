@@ -13,18 +13,46 @@
         <div class="inner_sec_grids_info_w3ls">
             <div class="signin-form">
                 <div class="login-form-rec">
-                    <form action="#" method="post">
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
                         @Html.AntiForgeryToken()
-                        <input type="text" name="name" placeholder="First Name" required="">
-                        <input type="text" name="name" placeholder="Last Name" required="">
-                        <input type="email" name="email" placeholder="Email" required="">
-                        <input type="password" name="password" id="password1" placeholder="Password" required="">
-                        <input type="password" name="password" id="password2" placeholder="Confirm Password" required="">
-                        <input type="text" name="Resume" placeholder="Resume"/>
+                        <div>
+                            @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                        <div>
+                            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(model => model.ResumeFile, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div @*class="col-md-10"*@>
+                                <input type="file" name="resumeFile" />
+                            </div>
+                        </div>
+
                         <input type="submit" value="Register">
-                    </form>
+                    }
                 </div>
-                <p class="reg"><a href="#"> By clicking register, I agree to your terms</a></p>
+                <p class="reg"><a href="~/Views/Home/Index.cshtml"> By clicking register, I agree to your terms</a></p>
 
             </div>
         </div>
