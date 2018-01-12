@@ -4,49 +4,185 @@
     ViewBag.Title = "Index";
 }
 
+<style>
+    .ui-tabs-vertical {
+        width: 55em;
+    }
+
+        .ui-tabs-vertical .ui-tabs-nav {
+            padding: .2em .1em .2em .2em;
+            float: left;
+            width: 12em;
+        }
+
+            .ui-tabs-vertical .ui-tabs-nav li {
+                clear: left;
+                width: 100%;
+                border-bottom-width: 1px !important;
+                border-right-width: 0 !important;
+                margin: 0 -1px .2em 0;
+            }
+
+                .ui-tabs-vertical .ui-tabs-nav li a {
+                    display: block;
+                }
+
+                .ui-tabs-vertical .ui-tabs-nav li.ui-tabs-active {
+                    padding-bottom: 0;
+                    padding-right: .1em;
+                    border-right-width: 1px;
+                }
+
+        .ui-tabs-vertical .ui-tabs-panel {
+            padding: 1em;
+            float: right;
+            width: 40em;
+        }
+</style>
+
+
 <h2>Index</h2>
+
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.StoreNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Position.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Location.State)
-        </th>
-        <th></th>
-    </tr>
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.StoreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location.State)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Location.State)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.OpenPositionID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.OpenPositionID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.OpenPositionID }) |
-            @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location.State)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) |
+                    @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
+                </td>
+            </tr>
+        }
+    </table>*@
+
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Open Positions</a></li>
+        <li><a href="#tabs-2">All Positions</a></li>
+
+    </ul>
+    <div id="tabs-1">
+        <h2>Open Positions at Hole Foods</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.City)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location.State)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.City)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location.State)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) |
+                        @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div id="tabs-2">
+        <h2>All Positions at Hole Foods</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Position.JobDescription)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Position.JobDescription)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</div>
+
+@section Script{
+
+
+    <script>
+        $(function () {
+            $("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+            $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+        });
+    </script>
 }
 
-</table>

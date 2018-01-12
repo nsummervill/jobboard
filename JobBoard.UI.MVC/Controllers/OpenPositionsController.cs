@@ -39,9 +39,20 @@ namespace JobBoard.UI.MVC.Controllers
         }
 
         // GET: OpenPositions/Create
+        [Authorize(Roles ="Admin, Manager")]
         public ActionResult Create()
         {
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
+            if (User.IsInRole("Manager"))
+            {
+                var currentUserId = User.Identity.GetUserId();
+                ViewBag.LocationID = 
+                new SelectList(db.Locations.Where(x => x.ManagerID == currentUserId), "LocationID", "City");
+            }
+            else
+            {
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
+            }
+            
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
             return View();
         }
@@ -60,7 +71,22 @@ namespace JobBoard.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            //if you landed here, it's because there was an error with your new object
+            if (User.IsInRole("Manager"))
+            {
+                //if you're a manager, only see your locations
+                var currentUserId = User.Identity.GetUserId();
+                ViewBag.LocationID = 
+                    new SelectList(
+                        db.Locations.Where(x => x.ManagerID == currentUserId), 
+                    "LocationID", "StoreNumber", openPosition.LocationID);
+            }
+            else
+            {
+                //Admin sees all locations
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            }
+            
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
@@ -77,7 +103,20 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            if (User.IsInRole("Manager"))
+            {
+                //if you're a manager, only see your locations
+                var currentUserId = User.Identity.GetUserId();
+                ViewBag.LocationID =
+                    new SelectList(
+                        db.Locations.Where(x => x.ManagerID == currentUserId),
+                    "LocationID", "StoreNumber", openPosition.LocationID);
+            }
+            else
+            {
+                //Admin sees all locations
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            }
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
@@ -95,7 +134,20 @@ namespace JobBoard.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            if (User.IsInRole("Manager"))
+            {
+                //if you're a manager, only see your locations
+                var currentUserId = User.Identity.GetUserId();
+                ViewBag.LocationID =
+                    new SelectList(
+                        db.Locations.Where(x => x.ManagerID == currentUserId),
+                    "LocationID", "StoreNumber", openPosition.LocationID);
+            }
+            else
+            {
+                //Admin sees all locations
+                ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
+            }
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }

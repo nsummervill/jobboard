@@ -30,7 +30,7 @@ namespace JobBoard.UI.MVC.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ContactForm(ContactViewModel contact)
+        public ActionResult Contact(ContactViewModel contact)
         {
             //Create the body of the email
             string body = string.Format("Name: {0}<br />Email: {1}<br />Subject: {2}<br />Message: {3}", contact.Name, contact.Email, contact.Subject, contact.Message);
@@ -53,7 +53,7 @@ namespace JobBoard.UI.MVC.Controllers
                         client.Send(msg);
                         //Step 7: Create ContactConfirmation View
                         //(Right clicked Views folder and added a View()
-                        return View("Index", contact);
+                        return View("Index");
                     }
 
                 }
@@ -63,7 +63,7 @@ namespace JobBoard.UI.MVC.Controllers
 
                 }
 
-                return View();
+                return View(contact);
 
 
             }

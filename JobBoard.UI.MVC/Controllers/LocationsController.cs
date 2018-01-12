@@ -10,17 +10,19 @@ using JobBoard.Data.EF;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class LocationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Locations
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var locations = db.Locations.Include(l => l.AspNetUser);
             return View(locations.ToList());
         }
-
+        [AllowAnonymous]
         // GET: Locations/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,7 +37,7 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(location);
         }
-
+       
         // GET: Locations/Create
         public ActionResult Create()
         {
