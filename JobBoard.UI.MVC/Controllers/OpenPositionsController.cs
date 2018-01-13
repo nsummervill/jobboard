@@ -12,6 +12,7 @@ using System.Data.Entity.Validation;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles="Employee, Manager, Admin")]
     public class OpenPositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -22,7 +23,7 @@ namespace JobBoard.UI.MVC.Controllers
             var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
             return View(openPositions.ToList());
         }
-
+        [Authorize(Roles = "Employee, Manager, Admin")]
         // GET: OpenPositions/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,9 +38,9 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(openPosition);
         }
-
+        [Authorize(Roles ="Manager, Admin")]
         // GET: OpenPositions/Create
-        [Authorize(Roles ="Admin, Manager")]
+        
         public ActionResult Create()
         {
             if (User.IsInRole("Manager"))
@@ -90,7 +91,7 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: OpenPositions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -151,7 +152,7 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: OpenPositions/Delete/5
         public ActionResult Delete(int? id)
         {

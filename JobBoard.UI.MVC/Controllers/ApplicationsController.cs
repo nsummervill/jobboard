@@ -10,17 +10,18 @@ using JobBoard.Data.EF;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Employee, Manager, Admin")]
     public class ApplicationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Applications
         public ActionResult Index()
         {
             var applications = db.Applications.Include(a => a.OpenPosition);
             return View(applications.ToList());
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,7 +36,7 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(application);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Create
         public ActionResult Create()
         {
@@ -60,7 +61,7 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -93,7 +94,7 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Delete/5
         public ActionResult Delete(int? id)
         {

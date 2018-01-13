@@ -45,50 +45,11 @@
 
 
 <p>
+   @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+   {
     @Html.ActionLink("Create New", "Create")
+   }
 </p>
-@*<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Location.StoreNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Position.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location.State)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Position.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.City)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location.State)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) |
-                    @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
-                </td>
-            </tr>
-        }
-    </table>*@
-
 
 <div id="tabs">
     <ul>
@@ -131,10 +92,22 @@
                         @Html.DisplayFor(modelItem => item.Location.State)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) |
-                        @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
+                        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
+                        }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
+                        @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
+                        {
+                            @:|    
+    }
+                        @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
+                        {
+                            @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
+                        }
+
                     </td>
                 </tr>
             }
@@ -163,9 +136,13 @@
                         @Html.DisplayFor(modelItem => item.Position.JobDescription)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.PositionID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
+                        @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
+                        }
+                        @Html.ActionLink("Details", "Details", new { id = item.PositionID })
+
                     </td>
                 </tr>
             }

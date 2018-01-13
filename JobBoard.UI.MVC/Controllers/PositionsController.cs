@@ -10,8 +10,10 @@ using JobBoard.Data.EF;
 
 namespace JobBoard.UI.MVC.Controllers
 {
+    [Authorize(Roles = "Employee, Manager, Admin")]
     public class PositionsController : Controller
     {
+        
         private JobBoardEntities db = new JobBoardEntities();
 
         // GET: Positions
@@ -34,7 +36,7 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(position);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Positions/Create
         public ActionResult Create()
         {
@@ -57,7 +59,7 @@ namespace JobBoard.UI.MVC.Controllers
 
             return View(position);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Positions/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -88,7 +90,7 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(position);
         }
-
+        [Authorize(Roles = "Manager, Admin")]
         // GET: Positions/Delete/5
         public ActionResult Delete(int? id)
         {

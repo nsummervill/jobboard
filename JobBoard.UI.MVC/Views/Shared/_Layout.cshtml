@@ -26,7 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--//tags -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css">
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-    
+
     <link href="~/Content/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" media="all" />
 
@@ -60,33 +60,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <nav class="link-effect-2" id="link-effect-2">
                             <ul class="nav navbar-nav">
                                 <li class="effect-3">@Html.ActionLink("Home", "Index", "Home")</li>
-                                <li class="effect-3">@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <li class="effect-3">@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
+                                }
                                 <li class="effect-3">@Html.ActionLink("Contact HQ", "Contact", "Home")</li>
-                                <li class="effect-3">@Html.ActionLink("Applications", "Index", "Applications")</li>
                                 <li class="effect-3">@Html.ActionLink("Locations", "Index", "Locations")</li>
-                                <li class="effect-3">@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
-                                <li class="effect-3">@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+
+                                @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                                {
+                                    /**/
+                                    <li class="effect-3">@Html.ActionLink("Applications", "Index", "Applications")</li>
+
+                                }
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li class="effect-3">@Html.ActionLink("Users", "Index", "UsersAdmin")</li>
+                                    <li class="effect-3">@Html.ActionLink("Roles", "Index", "RolesAdmin")</li>
+                                }
+
                                 @Html.Partial("_LoginPartial")
                             </ul>
 
                         </nav>
                     </div>
-                    <!--/.navbar-collapse-->
-                    <!--/.navbar-->
+
                 </div>
             </nav>
         </div>
     </div>
-    <!-- banner -->
-    <!--//banner -->
-    <!--/search_form -->
-    <!--//search_form -->
-    <!-- //banner-bottom -->
-    <!-- services -->
-    <!-- //services -->
-    <!-- /mid-services -->
-    <!-- //mid-services -->
-    <!-- //testimonials -->
     @RenderBody()
 
     <!-- footer -->
@@ -129,14 +131,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     <!-- js -->
-    
+
     <script type="text/javascript" src="~/Content/js/jquery-2.1.4.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
     <script type="text/javascript" src="~/Content/js/bootstrap.js"></script>
-   
+
     @RenderSection("Script", false)
-   
+
 </body>
 
 </html>

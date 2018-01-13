@@ -188,6 +188,7 @@ namespace JobBoard.UI.MVC.Controllers
                     return View("DisplayEmail");
                 }
                 AddErrors(result);
+                
             }
 
             // If we got this far, something failed, redisplay form
