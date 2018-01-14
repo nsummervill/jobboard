@@ -103,7 +103,7 @@
                         {
                             @:|    
     }
-                        @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
+                        @if (User.IsInRole("Employee"))
                         {
                             @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
                         }

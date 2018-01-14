@@ -50,9 +50,9 @@
             @Html.DisplayFor(modelItem => item.OpenPosition.OpenPositionID)
         </td>
         <td>
-            @if (User.IsInRole("Admin") || User.IsInRole("Manager")
+            @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
             {
-            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID }) |
+            @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID }) @:|
             @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationID })
             }
            
