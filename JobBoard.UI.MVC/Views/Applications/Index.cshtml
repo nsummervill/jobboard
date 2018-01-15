@@ -14,9 +14,13 @@
         <th>
             @Html.DisplayNameFor(model => model.ApplicationDate)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ManagerNotes)
-        </th>
+        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+        {
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerNotes)
+            </th>
+        }
+        
         <th>
             @Html.DisplayNameFor(model => model.IsDeclined)
         </th>
