@@ -216,7 +216,7 @@ namespace JobBoard.UI.MVC.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", "Applications");
+            return RedirectToAction("Index", "OpenPositions");
         }
 
         protected override void Dispose(bool disposing)

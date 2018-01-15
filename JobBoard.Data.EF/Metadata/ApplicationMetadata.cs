@@ -20,6 +20,7 @@ namespace JobBoard.Data.EF//.Metadata
         [Display(Name = "User ID")]
         public string UserID { get; set; }
         [Display(Name ="Application Date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public System.DateTime ApplicationDate { get; set; }
     }
     [MetadataType(typeof(ApplicationMetadata))]

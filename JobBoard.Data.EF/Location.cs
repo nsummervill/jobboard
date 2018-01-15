@@ -19,9 +19,7 @@ namespace JobBoard.Data.EF
         {
             this.OpenPositions = new HashSet<OpenPosition>();
         }
-        JobBoardEntities db = new JobBoardEntities();
-        
-
+    
         public int LocationID { get; set; }
         public string StoreNumber { get; set; }
         public string City { get; set; }

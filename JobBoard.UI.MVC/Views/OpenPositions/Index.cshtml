@@ -41,14 +41,14 @@
 </style>
 
 
-<h2>Open Positions</h2>
+
 
 
 <p>
-   @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
-   {
-    @Html.ActionLink("Create New Open Position", "Create")
-   }
+    @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Create New Open Position", "Create")
+    }
 </p>
 
 <div id="tabs">
@@ -58,7 +58,7 @@
 
     </ul>
     <div id="tabs-1">
-        <h2>Open Positions at Hole Foods</h2>
+        <h2>Open Positions at Dunder Mifflin</h2>
         <table class="table">
             <tr>
                 <th>
@@ -101,7 +101,7 @@
                         @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
                         @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
                         {
-                            @:|    
+                            @:|
     }
                         @if (User.IsInRole("Employee"))
                         {
@@ -114,14 +114,14 @@
         </table>
     </div>
     <div id="tabs-2">
-        <h2>All Positions at Hole Foods</h2>
+        <h2>All Positions at Dunder Mifflin</h2>
         <table class="table">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Position.Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Position.JobDescription)
+                    Job Description
                 </th>
                 <th></th>
             </tr>
@@ -138,8 +138,11 @@
                     <td>
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
-                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID })<br />
+                            
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) 
+                            <br />
+                            
                         }
                         @Html.ActionLink("Details", "Details", new { id = item.PositionID })
 

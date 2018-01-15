@@ -1378,15 +1378,16 @@ p.reg {
 /*-- /inner_page --*/
 
 .inner_page_agile {
-	text-align: center;
-	background: url(../images/candidate.jpg) no-repeat 0px 0px;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
-	min-height: 255px;
-	padding-top: 6em;
+    text-align: center;
+    
+    background-image: url('../../_Archive/images/Dunder-Mifflin-Logo-Cast-the-office-28us-29-34267_1024_819-759x500.jpg');
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height: 255px;
+    padding-top: 6em;
 }
 
 .inner_page_agile h3 {

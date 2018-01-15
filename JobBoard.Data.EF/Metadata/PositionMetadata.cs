@@ -14,4 +14,6 @@ namespace JobBoard.Data.EF//.Metadata
         [Display(Name ="Job Description")]
         public string JobDescription { get; set; }
     }
+    [MetadataType(typeof(PositionMetadata))]
+    public partial class Position { }
 }

@@ -202,6 +202,7 @@
     <Content Include="Content\images\banner4.jpg" />
     <Content Include="Content\images\candidate.jpg" />
     <Content Include="Content\images\contact.jpg" />
+    <Content Include="Content\images\downsizing-i-have-no-problem-with-that-i-have-been-recommending-downsizing-since-i-got-here-i-even-b.jpg" />
     <Content Include="Content\images\dunder_mifflin_paper_company_inc__by_obeyshi-d4okpdj.png" />
     <Content Include="Content\images\e1.jpg" />
     <Content Include="Content\images\e2.jpg" />
@@ -209,6 +210,7 @@
     <Content Include="Content\images\e4.jpg" />
     <Content Include="Content\images\e5.jpg" />
     <Content Include="Content\images\e6.jpg" />
+    <Content Include="Content\images\facebook_timeline_banner__dunder_mifflin_by_momoleprince-d4nfefp.jpg" />
     <Content Include="Content\images\loc1.jpg" />
     <Content Include="Content\images\loc2.jpg" />
     <Content Include="Content\images\loc3.jpg" />
@@ -257,6 +259,7 @@
     <Content Include="_Archive\images\banner4.jpg" />
     <Content Include="_Archive\images\candidate.jpg" />
     <Content Include="_Archive\images\contact.jpg" />
+    <Content Include="_Archive\images\Dunder-Mifflin-Logo-Cast-the-office-28us-29-34267_1024_819-759x500.jpg" />
     <Content Include="_Archive\images\e1.jpg" />
     <Content Include="_Archive\images\e2.jpg" />
     <Content Include="_Archive\images\e3.jpg" />

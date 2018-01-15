@@ -15,26 +15,31 @@ namespace JobBoard.UI.MVC.Controllers
     public class ApplicationsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
-        [Authorize(Roles = "Manager, Admin")]
+        [Authorize(Roles = "Employee, Manager, Admin")]
         // GET: Applications
         public ActionResult Index()
         {
-
+            var currentUserId = User.Identity.GetUserId();
             if (User.IsInRole("Employee"))
             {
-                var currentUserId = User.Identity.GetUserId();
-                ViewBag.ApplicationID =
-                new SelectList(db.Applications.Where(x => x.UserID == currentUserId));
-                return View(ViewBag.ApplicationID);
+
+                var applications = db.Applications.Where(x => x.UserID == currentUserId).Include(a => a.OpenPosition);
+                return View(applications.ToList());
+            }
+            else if (User.IsInRole("Manager"))
+            {
+                var applications = db.Applications.Where(x => x.OpenPosition.Location.ManagerID == currentUserId).Include(a => a.OpenPosition);
+                return View(applications.ToList());
+            }
+            else if (User.IsInRole("Admin"))
+            {
+                var applications = db.Applications.Include(a => a.OpenPosition);
+                return View(applications.ToList());
             }
             else
             {
-                var applications = db.Applications.Include(a => a.OpenPosition);
-
-
-                return View(applications.ToList());
+                return null;
             }
-
         }
         [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Details/5

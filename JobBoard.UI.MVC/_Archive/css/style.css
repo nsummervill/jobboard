@@ -1378,15 +1378,16 @@ p.reg {
 /*-- /inner_page --*/
 
 .inner_page_agile {
-	text-align: center;
-	background: url(../images/candidate.jpg) no-repeat 0px 0px;
-	background-size: cover;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	-ms-background-size: cover;
-	min-height: 255px;
-	padding-top: 6em;
+    text-align: center;
+    background: no-repeat 0px 0px;
+    background-image: url('../../Content/images/facebook_timeline_banner__dunder_mifflin_by_momoleprince-d4nfefp.jpg');
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    min-height: 255px;
+    padding-top: 6em;
 }
 
 .inner_page_agile h3 {

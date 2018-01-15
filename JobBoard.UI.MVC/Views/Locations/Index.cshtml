@@ -4,12 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2 style="margin-bottom:1em; margin-top:1em">Dunder Mifflin Locations</h2>
 
 <p>
     @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
     {
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New Location", "Create")
     }
 </p>
 <table class="table">
@@ -56,8 +56,6 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) @:|
                     @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
                 }
-
-                @Html.ActionLink("Details", "Details", new { id = item.LocationID }) |
 
             </td>
         </tr>

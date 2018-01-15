@@ -3,7 +3,6 @@
     ViewBag.Title = "Register";
 }
 
-
 <div class="inner_content_info_agileits">
     <div class="container">
         <div class="tittle_head_w3ls">
@@ -41,20 +40,20 @@
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                         </div>
 
+                        @*<div>
+                                @Html.LabelFor(m => m.ResumeFile, new { @class = "col-md-5 control-label text-left" })
+                                @Html.TextBoxFor(m => m.ResumeFile, new { type = "file", style="opacity:100" })
+                            </div>*@
+
                         <div>
                             @Html.LabelFor(model => model.ResumeFile, htmlAttributes: new { @class = "control-label col-md-6 text-left" })
 
-                        </div>
-                        @*<div class="form-inputs upload">
-                            <p>Upload your resume</p>
-                            <input type="file" id="fileselect" name="resumeFile" multiple="multiple" />
                             
-                        </div>*@
-                        <div>
-                                <input type="file" name="resumeFile"/>
-                            <div id="filedrag">Upload</div>
-                            </div>
-                        <input type="submit" value="Register">
+                            <input type="file" id="fileselect" name="resumeFile" class="form-control" style="opacity:100; margin-top:2em" />
+
+                        </div>
+
+                        <input type="submit" value="Register" style="margin-top:3em">
                     }
                 </div>
                 <p class="reg"><a href="~/Views/Home/Index.cshtml"> By clicking register, I agree to your terms</a></p>
