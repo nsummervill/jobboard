@@ -194,6 +194,7 @@
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\images\211950726182631923_0i3CiR1n_f.jpg" />
     <Content Include="Content\images\ab.png" />
     <Content Include="Content\images\banner1.jpg" />
     <Content Include="Content\images\banner2.jpg" />
@@ -201,6 +202,7 @@
     <Content Include="Content\images\banner4.jpg" />
     <Content Include="Content\images\candidate.jpg" />
     <Content Include="Content\images\contact.jpg" />
+    <Content Include="Content\images\dunder_mifflin_paper_company_inc__by_obeyshi-d4okpdj.png" />
     <Content Include="Content\images\e1.jpg" />
     <Content Include="Content\images\e2.jpg" />
     <Content Include="Content\images\e3.jpg" />

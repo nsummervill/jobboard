@@ -36,7 +36,7 @@
             <td>
                 @if (User.IsInRole("Admin"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }) |
+                    @Html.ActionLink("Edit", "Edit", "Positions", new { id = item.PositionID }) 
             @Html.ActionLink("Delete", "Delete", new { id = item.PositionID })
                 }
 
