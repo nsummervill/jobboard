@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.Location>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Locations";
 }
 
-<h2 style="margin-bottom:1em; margin-top:1em">Dunder Mifflin Locations</h2>
+<h2 style="margin-bottom:1em; margin-top:1em; text-align:center">Dunder Mifflin Locations</h2>
 
 <p>
     @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
@@ -12,27 +12,30 @@
         @Html.ActionLink("Create New Location", "Create")
     }
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.StoreNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.State)
-        </th>
-        <th>
-           Manager
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.AspNetUser.LastName)
-        </th>*@
-        <th></th>
-    </tr>
+<table class="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                Manager
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.AspNetUser.LastName)
+                </th>*@
+            <th></th>
+        </tr>
+    </thead>
 
-    @foreach (var item in Model)
+    <tbody>
+        @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -48,8 +51,8 @@
                 @Html.DisplayFor(modelItem => item.AspNetUser.FirstName) @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
+                </td>*@
             <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
@@ -60,5 +63,15 @@
             </td>
         </tr>
     }
+</tbody>
 
 </table>
+@section Script{
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.myTable').DataTable();
+        });
+    </script>
+}
