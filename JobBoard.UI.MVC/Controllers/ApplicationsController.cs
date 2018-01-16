@@ -114,7 +114,7 @@ namespace JobBoard.UI.MVC.Controllers
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
-        [Authorize(Roles = "Manager, Admin")]
+        [Authorize(Roles = "Employee, Manager, Admin")]
         // GET: Applications/Delete/5
         public ActionResult Delete(int? id)
         {

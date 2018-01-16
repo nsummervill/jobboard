@@ -20,20 +20,11 @@
                 @Html.DisplayNameFor(model => model.ManagerNotes)
             </th>
         }
-
-
-        @if (User.IsInRole("Employee"))
-        {
-            <th>
-                Declined?
-            </th>
-        }
-        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
-        {
+       
             <th>
                 @Html.DisplayNameFor(model => model.IsDeclined)
             </th>
-        }
+        
         <th>
             @Html.DisplayNameFor(model => model.ResumeFile)
         </th>
@@ -52,12 +43,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ApplicationDate)
             </td>
+            @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManagerNotes)
+                </td>
+            }
+            
             <td>
-                @Html.DisplayFor(modelItem => item.ManagerNotes)
+                @Html.EditorFor(modelItem => item.IsDeclined)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsDeclined)
-            </td>
+
+
             <td>
                 <a href="~/Content/Resumes/@item.ResumeFile">Resume</a>
                 @*@Html.DisplayFor(modelItem => item.ResumeFile)*@
@@ -66,14 +63,7 @@
                 @Html.DisplayFor(modelItem => item.OpenPosition.Position.Title)
             </td>
             <td>
-                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
-                {
-                    
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationID }) @:|
-                }
-                @Html.ActionLink("Edit", "Edit", new { id = item.ApplicationID })
-
-
+                @Html.ActionLink("Delete", "Delete", new { id = item.ApplicationID }, new { @class = "btn btn-default" })
             </td>
         </tr>
     }

@@ -211,6 +211,7 @@
     <Content Include="Content\images\e5.jpg" />
     <Content Include="Content\images\e6.jpg" />
     <Content Include="Content\images\facebook_timeline_banner__dunder_mifflin_by_momoleprince-d4nfefp.jpg" />
+    <Content Include="Content\images\il_570xN.940198022_3swc.jpg" />
     <Content Include="Content\images\loc1.jpg" />
     <Content Include="Content\images\loc2.jpg" />
     <Content Include="Content\images\loc3.jpg" />
@@ -219,6 +220,7 @@
     <Content Include="Content\images\loc6.jpg" />
     <Content Include="Content\images\loc7.jpg" />
     <Content Include="Content\images\loc8.jpg" />
+    <Content Include="Content\images\Michael_Scott.jpg" />
     <Content Include="Content\images\mid.jpg" />
     <Content Include="Content\images\pf1.jpg" />
     <Content Include="Content\images\pf2.jpg" />
@@ -259,7 +261,7 @@
     <Content Include="_Archive\images\banner4.jpg" />
     <Content Include="_Archive\images\candidate.jpg" />
     <Content Include="_Archive\images\contact.jpg" />
-    <Content Include="_Archive\images\Dunder-Mifflin-Logo-Cast-the-office-28us-29-34267_1024_819-759x500.jpg" />
+    <Content Include="_Archive\images\default_header_mobile.jpg" />
     <Content Include="_Archive\images\e1.jpg" />
     <Content Include="_Archive\images\e2.jpg" />
     <Content Include="_Archive\images\e3.jpg" />

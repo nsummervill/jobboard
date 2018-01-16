@@ -55,7 +55,7 @@
     <ul>
         <li><a href="#tabs-1">Open Positions</a></li>
         <li><a href="#tabs-2">All Positions</a></li>
-
+        @*<li><a href="#tabs-3">Create New Opening</a></li>*@
     </ul>
     <div id="tabs-1">
         <h2>Open Positions at Dunder Mifflin</h2>
@@ -94,18 +94,17 @@
                     <td>
                         @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }) @:|
-                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) @:|
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })<br /> 
+                            
+
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }, new { @class="btn btn-default"}) 
+                            
                         }
 
-                        @Html.ActionLink("Details", "Details", new { id = item.OpenPositionID })
-                        @if (User.IsInRole("Employee") || User.IsInRole("Manager"))
-                        {
-                            @:|
-    }
+                       
                         @if (User.IsInRole("Employee"))
                         {
-                            @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID })
+                            @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class="btn btn-primary"})
                         }
 
                     </td>
@@ -138,21 +137,59 @@
                     <td>
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID })<br />
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })<br />
                             
-                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }) 
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }, new { @class = "btn btn-default" }) 
                             <br />
                             
                         }
-                        @Html.ActionLink("Details", "Details", new { id = item.PositionID })
 
                     </td>
                 </tr>
             }
-
+            
         </table>
+        
     </div>
+    @*<div id="tabs-3">
+        <h2>Create New Open Position</h2>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PositionID, "Position", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("PositionID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.LocationID, "Location", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("LocationID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.LocationID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>*@
+
+    <div class="col-md-offset-12" style="padding-left:1em">
+
+        <img src="~/Content/images/downsizing-i-have-no-problem-with-that-i-have-been-recommending-downsizing-since-i-got-here-i-even-b.jpg" />
+    </div>
 </div>
 
 @section Script{

@@ -12,7 +12,7 @@ using System.Data.Entity.Validation;
 
 namespace JobBoard.UI.MVC.Controllers
 {
-    [Authorize(Roles="Employee, Manager, Admin")]
+    [Authorize(Roles = "Employee, Manager, Admin")]
     public class OpenPositionsController : Controller
     {
         private JobBoardEntities db = new JobBoardEntities();
@@ -20,8 +20,18 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: OpenPositions
         public ActionResult Index()
         {
-            var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
-            return View(openPositions.ToList());
+            var currentUserId = User.Identity.GetUserId();
+            if (User.IsInRole("Manager"))
+            {
+                var openPositions = db.OpenPositions.Where(x => x.Location.ManagerID == currentUserId);
+                return View(openPositions.ToList());
+            }
+            else
+            {
+                var openPositions = db.OpenPositions.Include(o => o.Location).Include(o => o.Position);
+                return View(openPositions.ToList());
+            }
+
         }
         [Authorize(Roles = "Employee, Manager, Admin")]
         // GET: OpenPositions/Details/5
@@ -38,22 +48,22 @@ namespace JobBoard.UI.MVC.Controllers
             }
             return View(openPosition);
         }
-        [Authorize(Roles ="Manager, Admin")]
+        [Authorize(Roles = "Manager, Admin")]
         // GET: OpenPositions/Create
-        
+
         public ActionResult Create()
         {
             if (User.IsInRole("Manager"))
             {
                 var currentUserId = User.Identity.GetUserId();
-                ViewBag.LocationID = 
+                ViewBag.LocationID =
                 new SelectList(db.Locations.Where(x => x.ManagerID == currentUserId), "LocationID", "City");
             }
             else
             {
                 ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "City");
             }
-            
+
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title");
             return View();
         }
@@ -77,9 +87,9 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 //if you're a manager, only see your locations
                 var currentUserId = User.Identity.GetUserId();
-                ViewBag.LocationID = 
+                ViewBag.LocationID =
                     new SelectList(
-                        db.Locations.Where(x => x.ManagerID == currentUserId), 
+                        db.Locations.Where(x => x.ManagerID == currentUserId),
                     "LocationID", "StoreNumber", openPosition.LocationID);
             }
             else
@@ -87,7 +97,7 @@ namespace JobBoard.UI.MVC.Controllers
                 //Admin sees all locations
                 ViewBag.LocationID = new SelectList(db.Locations, "LocationID", "StoreNumber", openPosition.LocationID);
             }
-            
+
             ViewBag.PositionID = new SelectList(db.Positions, "PositionID", "Title", openPosition.PositionID);
             return View(openPosition);
         }
@@ -200,7 +210,7 @@ namespace JobBoard.UI.MVC.Controllers
                 .Where(x => x.Id == currentUserID).SingleOrDefault().ResumeFile;
             db.Applications.Add(a);
             //db.SaveChanges();
-            
+
 
             try
             {
@@ -216,7 +226,7 @@ namespace JobBoard.UI.MVC.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", "OpenPositions");
+            return RedirectToAction("Index", "Applications");
         }
 
         protected override void Dispose(bool disposing)

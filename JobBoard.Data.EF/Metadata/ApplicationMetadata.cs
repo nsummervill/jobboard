@@ -11,7 +11,7 @@ namespace JobBoard.Data.EF//.Metadata
     {
         [Display(Name ="Manager Notes")]
         public string ManagerNotes { get; set; }
-        [Display(Name = "Decline")]
+        [Display(Name = "Declined?")]
         public bool IsDeclined { get; set; }
         [Display(Name = "Resume File")]
         public string ResumeFile { get; set; }
