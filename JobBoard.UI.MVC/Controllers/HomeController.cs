@@ -53,7 +53,7 @@ namespace JobBoard.UI.MVC.Controllers
                         client.Send(msg);
                         //Step 7: Create ContactConfirmation View
                         //(Right clicked Views folder and added a View()
-                        return View("Index");
+                        return View("ContactConfirm");
                     }
 
                 }

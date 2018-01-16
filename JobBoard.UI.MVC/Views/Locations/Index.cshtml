@@ -53,8 +53,8 @@
             <td>
                 @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                 {
-                    @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }) @:|
-                    @Html.ActionLink("Delete", "Delete", new { id = item.LocationID })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.LocationID }, new { @class = "btn btn-default" }) @:|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.LocationID }, new { @class = "btn btn-default" })
                 }
 
             </td>
