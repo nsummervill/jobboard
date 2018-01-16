@@ -398,6 +398,7 @@
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
     <Content Include="Views\Account\Login - Copy.cshtml" />
     <Content Include="Views\Home\ContactConfirm.cshtml" />
+    <Content Include="Views\Shared\CreateJobsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
