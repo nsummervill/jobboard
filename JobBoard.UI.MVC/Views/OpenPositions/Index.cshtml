@@ -1,7 +1,8 @@
 ﻿@model IEnumerable<JobBoard.Data.EF.OpenPosition>
-
+@using JobBoard.Data.EF
 @{
     ViewBag.Title = "Index";
+    List<Position> allPositions = ViewBag.allPositions;
 }
 
 <style>
@@ -117,7 +118,7 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Position.Title)
+                   Title
                 </th>
                 <th>
                     Job Description
@@ -125,21 +126,21 @@
                 <th></th>
             </tr>
 
-            @foreach (var item in Model)
+            @foreach (var item in allPositions)
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Position.Title)
+                        @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Position.JobDescription)
+                        @Html.DisplayFor(modelItem => item.JobDescription)
                     </td>
                     <td>
                         @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
                         {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })<br />
+                            @Html.ActionLink("Edit", "Edit", new { id = item.PositionID }, new { @class = "btn btn-default" })<br />
                             
-                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }, new { @class = "btn btn-default" }) 
+                            @Html.ActionLink("Delete", "Delete", new { id = item.PositionID }, new { @class = "btn btn-default" }) 
                             <br />
                             
                         }

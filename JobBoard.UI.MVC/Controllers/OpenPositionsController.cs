@@ -20,6 +20,9 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: OpenPositions
         public ActionResult Index()
         {
+            ViewBag.allPositions = db.Positions.ToList();
+            
+
             var currentUserId = User.Identity.GetUserId();
             if (User.IsInRole("Manager"))
             {
