@@ -12,30 +12,27 @@
         @Html.ActionLink("Create New Location", "Create")
     }
 </p>
-<table>
-    
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.StoreNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.City)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th>
-                Manager
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.AspNetUser.LastName)
-                </th>*@
-            <th></th>
-        </tr>
-    
+<table class="table">
 
-    
-        @foreach (var item in Model)
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StoreNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            Manager
+        </th>
+        <th></th>
+    </tr>
+
+
+
+    @foreach (var item in Model)
     {
         <tr>
             <td>
@@ -50,9 +47,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AspNetUser.FirstName) @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.AspNetUser.LastName)
-                </td>*@
             <td>
                 @if (User.IsInRole("Admin"))
                 {
@@ -66,12 +60,3 @@
 
 
 </table>
-@section Script{
-    <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('.myTable').DataTable();
-        });
-    </script>
-}
