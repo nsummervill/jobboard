@@ -12,18 +12,18 @@ namespace JobBoard.Data.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Application
+    public partial class Status
     {
-        public int ApplicationID { get; set; }
-        public int OpenPositionID { get; set; }
-        public string UserID { get; set; }
-        public System.DateTime ApplicationDate { get; set; }
-        public string ManagerNotes { get; set; }
-        public string ResumeFile { get; set; }
-        public int StatusID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Status()
+        {
+            this.Applications = new HashSet<Application>();
+        }
     
-        public virtual AspNetUser AspNetUser { get; set; }
-        public virtual OpenPosition OpenPosition { get; set; }
-        public virtual Status Status { get; set; }
+        public int StatusID { get; set; }
+        public string StatusName { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Application> Applications { get; set; }
     }
 }

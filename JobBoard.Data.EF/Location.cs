@@ -26,8 +26,8 @@ namespace JobBoard.Data.EF
         public string State { get; set; }
         public string ManagerID { get; set; }
     
+        public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OpenPosition> OpenPositions { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
     }
 }

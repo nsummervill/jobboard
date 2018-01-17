@@ -83,6 +83,7 @@
     <Compile Include="Metadata\LocationMetadata.cs" />
     <Compile Include="Metadata\OpenPositionMetadata.cs" />
     <Compile Include="Metadata\PositionMetadata.cs" />
+    <Compile Include="Metadata\StatusMetadata.cs" />
     <Compile Include="OpenPosition.cs">
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
@@ -90,19 +91,23 @@
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Status.cs">
+      <DependentUpon>JobBoardModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
     <EntityDeploy Include="JobBoardModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JobBoardModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
     <None Include="JobBoardModel.edmx.diagram">
       <DependentUpon>JobBoardModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JobBoardModel.Context.tt">
@@ -116,10 +121,6 @@
       <LastGenOutput>JobBoardModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -9,8 +9,8 @@
     <Property Name="UserID" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="ApplicationDate" Type="date" Nullable="false" />
     <Property Name="ManagerNotes" Type="nvarchar" MaxLength="2000" />
-    <Property Name="IsDeclined" Type="bit" Nullable="false" />
     <Property Name="ResumeFile" Type="nvarchar" MaxLength="75" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AspNetRoles">
     <Key>
@@ -73,6 +73,13 @@
     <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="JobDescription" Type="nvarchar(max)" />
   </EntityType>
+  <EntityType Name="Statuses">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
   <Association Name="FK_Applications_AspNetUsers">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
@@ -94,6 +101,18 @@
       </Principal>
       <Dependent Role="Applications">
         <PropertyRef Name="OpenPositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Applications_Statuses">
+    <End Role="Statuses" Type="Self.Statuses" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Statuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="StatusID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -169,12 +188,17 @@
     <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OpenPositions" EntityType="Self.OpenPositions" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Applications_AspNetUsers" Association="Self.FK_Applications_AspNetUsers">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
     <AssociationSet Name="FK_Applications_OpenPositions" Association="Self.FK_Applications_OpenPositions">
       <End Role="OpenPositions" EntitySet="OpenPositions" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applications_Statuses" Association="Self.FK_Applications_Statuses">
+      <End Role="Statuses" EntitySet="Statuses" />
       <End Role="Applications" EntitySet="Applications" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">

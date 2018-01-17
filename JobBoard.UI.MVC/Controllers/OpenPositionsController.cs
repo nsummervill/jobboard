@@ -208,7 +208,7 @@ namespace JobBoard.UI.MVC.Controllers
             a.OpenPositionID = id.Value;
             a.UserID = currentUserID;
             a.ApplicationDate = DateTime.Now;
-            a.IsDeclined = false;
+            a.StatusID = 1;
             a.ResumeFile = db.AspNetUsers
                 .Where(x => x.Id == currentUserID).SingleOrDefault().ResumeFile;
             db.Applications.Add(a);

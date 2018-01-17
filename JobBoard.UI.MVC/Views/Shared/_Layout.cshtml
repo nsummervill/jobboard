@@ -52,7 +52,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" style="margin-bottom:4em; margin-top:-1em" href="index.cshtml">
-                            @*<h1><span class="fa fa-signal" aria-hidden="true"></span> Soft <label>Hr Agency</label></h1>*@
 
                             <img src="~/Content/images/dunder_mifflin_paper_company_inc__by_obeyshi-d4okpdj.png" />
                         </a>
@@ -62,7 +61,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <nav class="link-effect-2" id="link-effect-2">
                             <ul class="nav navbar-nav">
                                 <li class="effect-3">@Html.ActionLink("Home", "Index", "Home")</li>
-                                @if (Request.IsAuthenticated)
+                                @if (User.IsInRole("Employee") || User.IsInRole("Manager") || User.IsInRole("Admin"))
                                 {
                                     <li class="effect-3">@Html.ActionLink("Jobs", "Index", "OpenPositions")</li>
                                 }
@@ -100,15 +99,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @RenderBody()
 
     <!-- footer -->
-    <div class="footer_top_agileits">
+    @*<div class="footer_top_agileits">
         <div class="container">
 
 
 
 
 
-        </div>
-    </div>
+        </div>*@
+    @*</div>*@
     <div class="footer_w3ls padding">
         <div class="container">
             <div class="footer_bottom">

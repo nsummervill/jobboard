@@ -61,56 +61,62 @@
     <div id="tabs-1">
         <h2>Open Positions at Dunder Mifflin</h2>
         <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Location.StoreNumber)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Position.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Location.City)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Location.State)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+            
+            
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location.StoreNumber)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Position.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location.City)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Location.State)
-                    </td>
-                    <td>
-                        @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
-                        {
-                            @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })<br /> 
-                            
-
-                            @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }, new { @class="btn btn-default"}) 
-                            
-                        }
-
-                       
-                        @if (User.IsInRole("Employee"))
-                        {
-                            @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class="btn btn-primary"})
-                        }
-
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Location.StoreNumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Position.Title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Location.City)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Location.State)
+                    </th>
+                    <th></th>
                 </tr>
-            }
+          
+
+            
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location.StoreNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Position.Title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location.State)
+                        </td>
+                        <td>
+                            @if (User.IsInRole("Manager") || User.IsInRole("Admin"))
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })<br />
+
+
+                                @Html.ActionLink("Delete", "Delete", new { id = item.OpenPositionID }, new { @class = "btn btn-default" })
+
+                            }
+
+
+                            @if (User.IsInRole("Employee"))
+                            {
+                                @Html.ActionLink("Apply", "Apply", new { id = item.OpenPositionID }, new { @class = "btn btn-primary" })
+                            }
+
+                        </td>
+                    </tr>
+                }
+            
+
         </table>
     </div>
     <div id="tabs-2">
@@ -168,5 +174,10 @@
             $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
         });
     </script>
+<script>
+        $(document).ready(function () {
+            $('.myTable').DataTable();
+        });
+</script>
 }
 
