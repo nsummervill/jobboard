@@ -32,5 +32,6 @@ namespace JobBoard.Data.EF
         public virtual DbSet<OpenPosition> OpenPositions { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Status> Statuses { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
     }
 }

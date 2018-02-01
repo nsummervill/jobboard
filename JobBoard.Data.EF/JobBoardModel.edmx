@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="JobBoardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="JobBoardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Applications">
           <Key>
             <PropertyRef Name="ApplicationID" />
@@ -62,6 +62,18 @@
           <Property Name="State" Type="char" MaxLength="2" Nullable="false" />
           <Property Name="ManagerID" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Recipient" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Body" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Attachment" Type="nvarchar" MaxLength="75" />
+          <Property Name="IsRead" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="OpenPositions">
           <Key>
             <PropertyRef Name="OpenPositionID" />
@@ -82,7 +94,7 @@
           <Key>
             <PropertyRef Name="StatusID" />
           </Key>
-          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusName" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <Association Name="FK_Applications_AspNetUsers">
@@ -161,6 +173,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Messages_AspNetUsers">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Recipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_OpenPositions_Locations">
           <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
           <End Role="OpenPositions" Type="Self.OpenPositions" Multiplicity="*" />
@@ -191,6 +227,7 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OpenPositions" EntityType="Self.OpenPositions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statuses" EntityType="Self.Statuses" Schema="dbo" store:Type="Tables" />
@@ -218,6 +255,14 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="Locations" EntitySet="Locations" />
           </AssociationSet>
+          <AssociationSet Name="FK_Messages_AspNetUsers" Association="Self.FK_Messages_AspNetUsers">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_AspNetUsers1" Association="Self.FK_Messages_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
           <AssociationSet Name="FK_OpenPositions_Locations" Association="Self.FK_OpenPositions_Locations">
             <End Role="Locations" EntitySet="Locations" />
             <End Role="OpenPositions" EntitySet="OpenPositions" />
@@ -227,8 +272,7 @@
             <End Role="OpenPositions" EntitySet="OpenPositions" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="JobBoardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -277,7 +321,9 @@
           <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_AspNetUsers" FromRole="AspNetUsers" ToRole="Applications" />
           <NavigationProperty Name="Locations" Relationship="Self.FK_Locations_AspNetUsers" FromRole="AspNetUsers" ToRole="Locations" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
-        </EntityType>
+          <NavigationProperty Name="Messages" Relationship="JobBoardModel.FK_Messages_AspNetUsers" FromRole="AspNetUser" ToRole="Message" />
+          <NavigationProperty Name="Messages1" Relationship="JobBoardModel.FK_Messages_AspNetUsers1" FromRole="AspNetUser" ToRole="Message" />
+          </EntityType>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="LocationID" />
@@ -430,8 +476,55 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="Messages" EntityType="JobBoardModel.Message" />
+          <AssociationSet Name="FK_Messages_AspNetUsers" Association="JobBoardModel.FK_Messages_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_AspNetUsers1" Association="JobBoardModel.FK_Messages_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="Message" EntitySet="Messages" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="MessageID" />
+          </Key>
+          <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sender" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Recipient" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Attachment" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+          <Property Name="IsRead" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="JobBoardModel.FK_Messages_AspNetUsers" FromRole="Message" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="JobBoardModel.FK_Messages_AspNetUsers1" FromRole="Message" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_Messages_AspNetUsers">
+          <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="JobBoardModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_AspNetUsers1">
+          <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="JobBoardModel.Message" Role="Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Message">
+              <PropertyRef Name="Recipient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -524,6 +617,19 @@
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="JobBoardModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -61,13 +61,15 @@ namespace JobBoard.UI.MVC.Models
 
     public class RegisterViewModel
     {
-        [Required]
+        
         [Display(Name ="First Name")]
+        [Required(ErrorMessage = "* Required")]
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "* Required")]
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Display(Name = "Resume` File")]
+        [Display(Name = "Resume File")]
+        [Required(ErrorMessage = "* Required")]
         public string ResumeFile { get; set; }
 
         [Required]
@@ -75,12 +77,12 @@ namespace JobBoard.UI.MVC.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "* Required. Must use uppercase, lowercase, number, and special character")]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
-
+        [Required(ErrorMessage = "* Required. Must use uppercase, lowercase, number, and special character")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]

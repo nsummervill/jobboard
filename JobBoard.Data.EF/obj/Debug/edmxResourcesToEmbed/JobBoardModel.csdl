@@ -45,6 +45,8 @@
     <NavigationProperty Name="Applications" Relationship="Self.FK_Applications_AspNetUsers" FromRole="AspNetUsers" ToRole="Applications" />
     <NavigationProperty Name="Locations" Relationship="Self.FK_Locations_AspNetUsers" FromRole="AspNetUsers" ToRole="Locations" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <NavigationProperty Name="Messages" Relationship="JobBoardModel.FK_Messages_AspNetUsers" FromRole="AspNetUser" ToRole="Message" />
+    <NavigationProperty Name="Messages1" Relationship="JobBoardModel.FK_Messages_AspNetUsers1" FromRole="AspNetUser" ToRole="Message" />
   </EntityType>
   <EntityType Name="Location">
     <Key>
@@ -198,5 +200,52 @@
       <End Role="AspNetRoles" EntitySet="AspNetRoles" />
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
     </AssociationSet>
+    <EntitySet Name="Messages" EntityType="JobBoardModel.Message" />
+    <AssociationSet Name="FK_Messages_AspNetUsers" Association="JobBoardModel.FK_Messages_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Messages_AspNetUsers1" Association="JobBoardModel.FK_Messages_AspNetUsers1">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sender" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Recipient" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Body" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Attachment" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="IsRead" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AspNetUser" Relationship="JobBoardModel.FK_Messages_AspNetUsers" FromRole="Message" ToRole="AspNetUser" />
+    <NavigationProperty Name="AspNetUser1" Relationship="JobBoardModel.FK_Messages_AspNetUsers1" FromRole="Message" ToRole="AspNetUser" />
+  </EntityType>
+  <Association Name="FK_Messages_AspNetUsers">
+    <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="JobBoardModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="Sender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Messages_AspNetUsers1">
+    <End Type="JobBoardModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="JobBoardModel.Message" Role="Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="Recipient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\OpenPositionsController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -191,6 +192,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap.css" />
+    <Content Include="Content\css\CustomCSS.css" />
     <Content Include="Content\css\font-awesome.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
@@ -201,6 +203,7 @@
     <Content Include="Content\images\banner3.jpg" />
     <Content Include="Content\images\banner4.jpg" />
     <Content Include="Content\images\candidate.jpg" />
+    <Content Include="Content\images\Capture.PNG" />
     <Content Include="Content\images\contact.jpg" />
     <Content Include="Content\images\downsizing-i-have-no-problem-with-that-i-have-been-recommending-downsizing-since-i-got-here-i-even-b.jpg" />
     <Content Include="Content\images\dunder_mifflin_paper_company_inc__by_obeyshi-d4okpdj.png" />
@@ -399,6 +402,11 @@
     <Content Include="Views\Account\Login - Copy.cshtml" />
     <Content Include="Views\Home\ContactConfirm.cshtml" />
     <Content Include="Views\Shared\CreateJobsPartial.cshtml" />
+    <Content Include="Views\Messages\Create.cshtml" />
+    <Content Include="Views\Messages\Delete.cshtml" />
+    <Content Include="Views\Messages\Details.cshtml" />
+    <Content Include="Views\Messages\Edit.cshtml" />
+    <Content Include="Views\Messages\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,25 +41,30 @@ namespace JobBoard.UI.MVC.Controllers
                 return null;
             }
         }
-        [Authorize(Roles = "Manager, Admin")]
-        // GET: Applications/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Application application = db.Applications.Find(id);
-            if (application == null)
-            {
-                return HttpNotFound();
-            }
-            return View(application);
-        }
+
+        //--------not using details
+        //[Authorize(Roles = "Manager, Admin")]
+        //// GET: Applications/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Application application = db.Applications.Find(id);
+        //    if (application == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(application);
+        //}
+
+
         [Authorize(Roles = "Manager, Admin")]
         // GET: Applications/Create
         public ActionResult Create()
         {
+            ViewBag.StatusID = new SelectList(db.Statuses, "StatusID", "StatusName");
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID");
             return View();
         }
@@ -69,7 +74,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ApplicationID,OpenPositionID,UserID,ApplicationDate,ManagerNotes,StatusName,ResumeFile")] Application application)
+        public ActionResult Create([Bind(Include = "ApplicationID,OpenPositionID,UserID,ApplicationDate,ManagerNotes,StatusID,ResumeFile")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -78,6 +83,8 @@ namespace JobBoard.UI.MVC.Controllers
                 return RedirectToAction("Index");
             }
 
+            //modelstate bad - error - kick user back to try again
+            ViewBag.StatusID = new SelectList(db.Statuses, "StatusID", "StatusName", application.StatusID);
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
@@ -95,6 +102,7 @@ namespace JobBoard.UI.MVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.StatusID = new SelectList(db.Statuses, "StatusID", "StatusName", application.StatusID);
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }
@@ -104,7 +112,7 @@ namespace JobBoard.UI.MVC.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ApplicationID,OpenPositionID,UserID,ApplicationDate,ManagerNotes,StatusName,ResumeFile")] Application application)
+        public ActionResult Edit([Bind(Include = "ApplicationID,OpenPositionID,UserID,ApplicationDate,ManagerNotes,StatusID,ResumeFile")] Application application)
         {
             if (ModelState.IsValid)
             {
@@ -112,6 +120,7 @@ namespace JobBoard.UI.MVC.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.StatusID = new SelectList(db.Statuses, "StatusID", "StatusName", application.StatusID);
             ViewBag.OpenPositionID = new SelectList(db.OpenPositions, "OpenPositionID", "OpenPositionID", application.OpenPositionID);
             return View(application);
         }

@@ -14,43 +14,43 @@
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
+                       
                         <div>
                             @Html.LabelFor(m => m.FirstName, new { @class = "col-md-3 control-label text-left" })
                             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                         </div>
 
                         <div>
                             @Html.LabelFor(m => m.LastName, new { @class = "col-md-3 control-label text-left" })
 
                             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                         <div>
                             @Html.LabelFor(m => m.Email, new { @class = "col-md-3 control-label text-left" })
 
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                         </div>
                         <div>
                             @Html.LabelFor(m => m.Password, new { @class = "col-md-3 control-label text-left" })
 
                             @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                         </div>
                         <div>
                             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-5 control-label text-left" })
 
                             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                         </div>
-
-                        @*<div>
-                                @Html.LabelFor(m => m.ResumeFile, new { @class = "col-md-5 control-label text-left" })
-                                @Html.TextBoxFor(m => m.ResumeFile, new { type = "file", style="opacity:100" })
-                            </div>*@
 
                         <div>
                             @Html.LabelFor(model => model.ResumeFile, htmlAttributes: new { @class = "control-label col-md-6 text-left" })
-
                             
                             <input type="file" id="fileselect" name="resumeFile" class="form-control" style="opacity:100; margin-top:2em" />
-
+                            @Html.ValidationMessageFor(model => model.ResumeFile, "", new { @class = "text-danger" })
                         </div>
 
                         <input type="submit" value="Register" style="margin-top:3em">

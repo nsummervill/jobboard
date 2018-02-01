@@ -1,0 +1,21 @@
+﻿div.banner-bottom{
+    padding: 0em 0;
+}
+div.footer_top_agileits{
+    padding: 0em 0;
+}
+#footer1{
+ position:fixed;
+ bottom:0;
+ left:0;
+}
+.text-left{
+    text-align:left;
+}
+#margins{
+    margin-top:1em;
+    margin-bottom:1em;
+}
+.myWidth{
+    width:100%;
+}

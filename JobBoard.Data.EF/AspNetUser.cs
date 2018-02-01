@@ -20,6 +20,8 @@ namespace JobBoard.Data.EF
             this.Applications = new HashSet<Application>();
             this.Locations = new HashSet<Location>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.Messages = new HashSet<Message>();
+            this.Messages1 = new HashSet<Message>();
         }
     
         public string Id { get; set; }
@@ -44,5 +46,9 @@ namespace JobBoard.Data.EF
         public virtual ICollection<Location> Locations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages1 { get; set; }
     }
 }

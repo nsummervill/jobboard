@@ -78,6 +78,9 @@
     <Compile Include="Location.cs">
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Message.cs">
+      <DependentUpon>JobBoardModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Metadata\ApplicationMetadata.cs" />
     <Compile Include="Metadata\AspNetUserMetadata.cs" />
     <Compile Include="Metadata\LocationMetadata.cs" />

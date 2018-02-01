@@ -88,5 +88,18 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="JobBoardModel.Message">
+        <MappingFragment StoreEntitySet="Messages">
+          <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+          <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Recipient" ColumnName="Recipient" />
+          <ScalarProperty Name="Sender" ColumnName="Sender" />
+          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
