@@ -4,60 +4,158 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Inbox</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Compose", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Subject)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Attachment)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsRead)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser1.FirstName)
-        </th>
-        <th></th>
-    </tr>
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attachment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsRead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser1.LastName)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Subject)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Attachment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsRead)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser1.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MessageID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MessageID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MessageID })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Subject)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Body)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Attachment)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsRead)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser1.LastName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MessageID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MessageID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MessageID })
+                </td>
+            </tr>
+        }
+
+    </table>*@
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Inbox</a></li>
+        <li><a href="#tabs-2">Sent</a></li>
+
+    </ul>
+    <div id="tabs-1">
+        <h2>Inbox</h2>
+        <table class="table">
+
+
+            <tr>
+                <th>
+                    From
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Subject)
+                </th>
+
+                <th></th>
+            </tr>
+
+
+
+            @foreach (var item in Model.Where(m => m.AspNetUser.Id == m.Recipient))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUser.FirstName + " " + item.AspNetUser.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Details", "Details", new { id = item.MessageID }, new { @class = "btn btn-default" })<br />
+
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MessageID }, new { @class = "btn btn-default" })
+
+
+                    </td>
+                </tr>
+            }
+
+
+        </table>
+    </div>
+    <div id="tabs-2">
+        <h2>Sent Messages</h2>
+        <table class="table">
+            <tr>
+
+                <th> Recipient</th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+
+            <th></th>
+            </tr>
+
+            @foreach (var item in Model.Where(m => m.AspNetUser.Id == m.Sender))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AspNetUser1.FirstName + " " + item.AspNetUser1.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Subject)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "Details", new { id = item.MessageID }, new { @class = "btn btn-default" })<br />
+
+                        @Html.ActionLink("Delete", "Delete", new { id = item.MessageID }, new { @class = "btn btn-default" })
+                        <br />
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+</div>
+
+@section Script{
+
+
+    <script>
+        $(function () {
+            $("#tabs").tabs();
+        });
+    </script>
+
 }
-
-</table>

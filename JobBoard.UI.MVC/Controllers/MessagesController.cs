@@ -17,7 +17,15 @@ namespace JobBoard.UI.MVC.Controllers
         // GET: Messages
         public ActionResult Index()
         {
-            var messages = db.Messages.Include(m => m.AspNetUser).Include(m => m.AspNetUser1);
+
+            //var messages = db.Messages.Include(m => m.AspNetUser).Include(m => m.AspNetUser1);
+            var messages = db.Messages
+                .Where(m => m.AspNetUser.Id == m.Sender || 
+                m.AspNetUser.Id == m.Recipient)
+                .Include(m => m.AspNetUser1)
+                .Include(m => m.AspNetUser);
+
+
             return View(messages.ToList());
         }
 
