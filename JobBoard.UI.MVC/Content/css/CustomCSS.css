@@ -12,10 +12,9 @@ div.footer_top_agileits{
 .text-left{
     text-align:left;
 }
-.myMargins{
+#margins{
     margin-top:1em;
     margin-bottom:1em;
-    text-align:center;
 }
 .myWidth{
     width:100%;

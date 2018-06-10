@@ -14,12 +14,6 @@ namespace JobBoard.Data.EF
     
     public partial class Message
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Message()
-        {
-            this.AspNetUsers = new HashSet<AspNetUser>();
-        }
-    
         public int MessageID { get; set; }
         public string Sender { get; set; }
         public string Recipient { get; set; }
@@ -28,7 +22,7 @@ namespace JobBoard.Data.EF
         public string Attachment { get; set; }
         public bool IsRead { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AspNetUser AspNetUser1 { get; set; }
     }
 }
