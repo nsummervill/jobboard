@@ -54,10 +54,13 @@
     <Compile Include="Application.cs">
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetRole.cs">
+    <Compile Include="AspNetUser.cs">
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNetUser.cs">
+    <Compile Include="AspNetUserRole.cs">
+      <DependentUpon>JobBoardModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="C__MigrationHistory.cs">
       <DependentUpon>JobBoardModel.tt</DependentUpon>
     </Compile>
     <Compile Include="JobBoardModel.Context.cs">

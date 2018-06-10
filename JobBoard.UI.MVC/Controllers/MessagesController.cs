@@ -19,11 +19,12 @@ namespace JobBoard.UI.MVC.Controllers
         {
 
             //var messages = db.Messages.Include(m => m.AspNetUser).Include(m => m.AspNetUser1);
-            var messages = db.Messages
-                .Where(m => m.AspNetUser.Id == m.Sender || 
-                m.AspNetUser.Id == m.Recipient)
-                .Include(m => m.AspNetUser1)
-                .Include(m => m.AspNetUser);
+            var messages = db.Messages;
+                //.Where(m => m.AspNetUser.Id == m.Sender ||
+                //m.AspNetUser.Id == m.Recipient);
+                //.Include(m => m.AspNetUser1)
+                //.Include(m => m.AspNetUser)
+                
 
 
             return View(messages.ToList());
@@ -48,7 +49,9 @@ namespace JobBoard.UI.MVC.Controllers
         public ActionResult Create()
         {
             ViewBag.Sender = new SelectList(db.AspNetUsers, "Id", "FirstName");
+            
             ViewBag.Recipient = new SelectList(db.AspNetUsers, "Id", "FirstName");
+            
             return View();
         }
 

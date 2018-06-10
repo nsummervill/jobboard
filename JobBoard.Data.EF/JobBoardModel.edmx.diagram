@@ -4,25 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fccd40dd2a3c4357b2ceef6681b3019d" Name="Diagram1">
-        <EntityTypeShape EntityType="JobBoardModel.Application" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.AspNetRole" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.Location" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.OpenPosition" Width="1.5" PointX="7.5" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.Position" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="JobBoardModel.Status" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
+      <Diagram DiagramId="be92fce132844c4382901f3375828360" Name="Diagram1">
+        <EntityTypeShape EntityType="JobBoardModel.C__MigrationHistory" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.Application" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUserRole" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.AspNetUser" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.Location" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.Message" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.OpenPosition" Width="1.5" PointX="5.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.Position" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JobBoardModel.Status" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
         <AssociationConnector Association="JobBoardModel.FK_Applications_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Applications_OpenPositions" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Applications_Statuses" ManuallyRouted="false" />
+        <AssociationConnector Association="JobBoardModel.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_Locations_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Locations" ManuallyRouted="false" />
         <AssociationConnector Association="JobBoardModel.FK_OpenPositions_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="JobBoardModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="JobBoardModel.Message" Width="1.5" PointX="7.125" PointY="0.5" />
-        <AssociationConnector Association="JobBoardModel.FK_Messages_AspNetUsers" />
-        <AssociationConnector Association="JobBoardModel.FK_Messages_AspNetUsers1" />
-        </Diagram>
+        <AssociationConnector Association="JobBoardModel.UserMessages" ManuallyRouted="false" />
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
